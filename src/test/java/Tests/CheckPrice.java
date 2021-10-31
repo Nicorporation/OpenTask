@@ -11,7 +11,7 @@ public class CheckPrice {
     @Test
     public void CheckPriceTest() throws InterruptedException {
 
-        System.setProperty("webdriver.chrome.driver", "WebDriver/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "WebDriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         String stringExpectedPrice = "$16.51";

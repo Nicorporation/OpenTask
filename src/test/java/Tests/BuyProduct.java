@@ -21,7 +21,7 @@ public class BuyProduct {
         String mediateTotalPrice;
         String finalTotalPrice;
         int productsReturnedCount;
-        System.setProperty("webdriver.chrome.driver", "WebDriver/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "WebDriver/chromedriver.exe");
         WebDriver driver = new ChromeDriver();
 
         try {
@@ -88,7 +88,6 @@ public class BuyProduct {
 
             //Proceed
             driver.findElement(By.xpath("//button[@name='processCarrier']")).click();
-
 
             //Pay by bank wire
             driver.findElement(By.xpath("//a[@class='bankwire']")).click();
