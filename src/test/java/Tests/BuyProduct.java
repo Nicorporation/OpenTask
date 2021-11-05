@@ -5,25 +5,16 @@ import org.junit.Assert;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.Properties;
-
 public class BuyProduct {
-
-    private Properties properties;
 
     @Test
     @Parameters({"browser"})
-    public void BuyProductTest(String browser) throws InterruptedException, IOException {
-
-        properties = new Properties();
-        properties.load(new FileInputStream("src/main/resources/base.properties"));
+    public void BuyProductTest(String browser) throws InterruptedException{
 
         ObjectFactory objectFactory = new ObjectFactory("src/main/resources/base.properties", browser);
 
-        String email = properties.getProperty("email");
-        String password = properties.getProperty("password");
+        String email = objectFactory.properties.getProperty("email");
+        String password = objectFactory.properties.getProperty("password");
         String quantity = "2";
         String size = "M";
         String color = "Blue";

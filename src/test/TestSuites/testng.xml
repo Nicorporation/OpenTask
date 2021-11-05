@@ -9,11 +9,11 @@
                     <include name="BuyProductTest"/>
                 </methods>
             </class>
-            <class name="Tests.CheckPrice">
-                <methods>
-                    <include name="CheckPriceTest"/>
-                </methods>
-            </class>
+<!--            <class name="Tests.CheckPrice">-->
+<!--                <methods>-->
+<!--                    <include name="CheckPriceTest"/>-->
+<!--                </methods>-->
+<!--            </class>-->
         </classes>
     </test>
 </suite>

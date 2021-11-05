@@ -7,7 +7,6 @@ import org.testng.annotations.Test;
 
 public class CheckPrice {
 
-
     @Test
     @Parameters({"browser"})
     public void CheckPriceTest(String browser) {
