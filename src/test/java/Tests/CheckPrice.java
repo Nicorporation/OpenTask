@@ -1,17 +1,12 @@
 package Tests;
 
 import Factory.ObjectFactory;
-import Pages.Home;
-import Pages.Search;
 import org.junit.Assert;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-import java.util.concurrent.TimeUnit;
-
 public class CheckPrice {
+
 
     @Test
     @Parameters({"browser"})
