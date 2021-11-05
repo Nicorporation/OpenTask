@@ -1,29 +1,17 @@
 package Tests;
 
-import Pages.Home;
-import Pages.Product;
-import Pages.Search;
+import Factory.ObjectFactory;
 import org.junit.Assert;
-import org.junit.Test;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-
-import java.util.concurrent.TimeUnit;
+import org.testng.annotations.Parameters;
+import org.testng.annotations.Test;
 
 public class BuyProduct {
 
-    Home home;
-    Search search;
-    Product product;
-
     @Test
-    public void BuyProductTest() throws InterruptedException{
+    @Parameters({"browser"})
+    public void BuyProductTest(String browser) throws InterruptedException{
 
-        System.setProperty("webdriver.chrome.driver", "WebDriver/chromedriver.exe");
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        driver.get("http://automationpractice.com/");
-        driver.manage().window().maximize();
+        ObjectFactory objectFactory = new ObjectFactory("src/main/resources/base.properties", browser);
 
         String email = "vase5555@gmail.com";
         String password = "Test@123";
@@ -33,66 +21,62 @@ public class BuyProduct {
         String mediateTotalPrice;
         String finalTotalPrice;
 
-        home = new Home(driver);
-        search = new Search(driver);
-        product = new Product(driver);
-
         try {
-            home.enterSearchQuery("Faded Short Sleeve T-shirts");
-            home.clickSearch();
-            Assert.assertEquals(search.getResultsCount(), 1);
-            search.clickFirstProduct();
+            objectFactory.home.enterSearchQuery("Faded Short Sleeve T-shirts");
+            objectFactory.home.clickSearch();
+            Assert.assertEquals(objectFactory.search.getResultsCount(), 1);
+            objectFactory.search.clickFirstProduct();
 
             //Quantity 2
-            product.setProductQuantity(quantity);
+            objectFactory.product.setProductQuantity(quantity);
 
             //Size M
-            product.selectSize(size);
+            objectFactory.product.selectSize(size);
 
             //Color Blue
-            product.selectColor(color);
+            objectFactory.product.selectColor(color);
 
             //Add to cart
-            product.addToCart();
+            objectFactory.product.addToCart();
 
             //Get Total price
             Thread.sleep(2000);
-            mediateTotalPrice = product.getTotalPrice();
+            mediateTotalPrice = objectFactory.product.getTotalPrice();
             System.out.println("MEDIATE PRICE: " + mediateTotalPrice);
 
             //Proceed
-            product.clickProceed();
-            product.clickProceedInSummary();
+            objectFactory.product.clickProceed();
+            objectFactory.product.clickProceedInSummary();
 
             //Sign in with user
-            product.enterEmail(email);
-            product.enterPassword(password);
-            product.clickLoginButton();
+            objectFactory.product.enterEmail(email);
+            objectFactory.product.enterPassword(password);
+            objectFactory.product.clickLoginButton();
 
             //Proceed
-            product.clickProceedInAddress();
+            objectFactory.product.clickProceedInAddress();
 
             //Agree TS
-            product.agreeToTerms();
+            objectFactory.product.agreeToTerms();
 
             //Proceed
-            product.clickProceedInShipping();
+            objectFactory.product.clickProceedInShipping();
 
             //Pay by bank wire
-            product.clickBankWirePayment();
+            objectFactory.product.clickBankWirePayment();
 
             //Confirm
-            product.clickConfirmOrder();
+            objectFactory.product.clickConfirmOrder();
 
             //Assert completion
-            Assert.assertTrue(product.isOrderConfirmed());
+            Assert.assertTrue(objectFactory.product.isOrderConfirmed());
 
             //Assert amount
-            finalTotalPrice = product.getCompletedTotalPrice();
+            finalTotalPrice = objectFactory.product.getCompletedTotalPrice();
             Assert.assertEquals(mediateTotalPrice, finalTotalPrice);
 
         } finally {
-            driver.quit();
+            objectFactory.webDriver.driver.quit();
         }
     }
 }

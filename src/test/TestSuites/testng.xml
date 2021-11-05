@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="NikoWeb" parallel="classes" thread-count="2">
+    <test verbose="2" name="Niko Tests">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="Tests.BuyProduct">
+                <methods>
+                    <include name="BuyProductTest"/>
+                </methods>
+            </class>
+            <class name="Tests.CheckPrice">
+                <methods>
+                    <include name="CheckPriceTest"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+
